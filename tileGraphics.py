@@ -9,12 +9,27 @@ class colorPalette:
   self.colors.append(color)
 
 class sprite:
- def __init__(graphicsInstance,fileName):
+ def __init__(self,graphicsInstance,fileName):
   from PIL import Image as image
   im=image.open(fileName)
   rgb_im =im.convert("RGB")
-# return rgb_im.getpixel((x,y))
-  self.size=graphicsInstance.
+  self.size=graphicsInstance.tileWidth
+  self.pixdata=[]
+  import copy
+  dy=im.size[1]/self.size
+  dx=im.size[0]/self.size
+  y=0
+  while y<im.size[1]:
+   temp=[]
+   x=0
+   while x<im.size[0]:
+    temp.append(rgb_im.getpixel((int(x),int(y))))
+    x+=dx
+   y+=dy
+   self.pixdata.append(copy.copy(temp))
+  self.backColor=(-1,-1,-1)
+ def setBackgroundColor(self,color):
+  self.backColor=color
 
 
 
@@ -86,3 +101,12 @@ class graphics:
   return pygame.mouse.get_pressed()[button]==1
  def quit(self):
   pygame.quit()
+ def putSprite(self,x,y,sprite):
+  pygame.draw.rect(screen,self.palette.get(self.matrix[y][x]),((x)*self.tileWidth,(y)*self.tileWidth,self.tileWidth,self.tileWidth))
+  px=x*self.tileWidth
+  py=y*self.tileWidth
+  for y in range(self.tileWidth):
+   for x in range(self.tileWidth):
+    pix=sprite.pixdata[y][x]
+    if pix!=sprite.backColor:
+     screen.set_at((x+px,y+py),pix)
