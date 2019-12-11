@@ -9,7 +9,7 @@ class colorPalette:
   self.colors.append(color)
 
 class sprite:
- def __init__(self,graphicsInstance,fileName):
+ def __init__(self,graphicsInstance,fileName,backgroundColor=(-1,-1,-1)):
   from PIL import Image as image
   im=image.open(fileName)
   rgb_im =im.convert("RGB")
@@ -27,10 +27,32 @@ class sprite:
     x+=dx
    y+=dy
    self.pixdata.append(copy.copy(temp))
-  self.backColor=(-1,-1,-1)
+  self.backColor=backgroundColor
  def setBackgroundColor(self,color):
   self.backColor=color
 
+class textBox:
+ def __init__(self,graphicsInstance,x,y,width,height,font="arialms",textSize=100,textColor=(255,255,255),backgroundColor=(0,0,0),border=False,bold=False):
+  self.bold=bold
+  tw=graphicsInstance.tileWidth
+  self.textRect=(tw*x,tw*y,width*tw,height*tw)
+  self.border=border
+  self.font=font
+  self.textSize=textSize
+  self.textColor=textColor
+  self.backgroundColor=backgroundColor
+ def setBorder(self,border):
+  self.border=border
+ def setBackgroundColor(self,color):
+  self.backgroundColor=color
+ def setTextColor(self,color):
+  self.textColor=color
+ def setTextSize(self,size):
+  self.textSize=size
+ def setFont(self,font):
+  self.font=font
+ def setBold(self,bold):
+  self.bold=bold
 
 
 class graphics:
@@ -50,6 +72,7 @@ class graphics:
   global pygame,screen
   import pygame
   pygame.init()
+  pygame.font.init()
   screen=pygame.display.set_mode(self.size)
   screen.fill(palette.get(0))
   self.matrix=[]
@@ -110,3 +133,30 @@ class graphics:
     pix=sprite.pixdata[y][x]
     if pix!=sprite.backColor:
      screen.set_at((x+px,y+py),pix)
+ def putTextBox(self,textBox,text):
+  font=pygame.font.SysFont(textBox.font,textBox.textSize,bold=textBox.bold)
+  width=textBox.textRect[2]
+  nextLine=""
+  textArray=[]
+  while len(text)>=1:
+   rect=font.render(text,1,textBox.textColor).get_rect()
+   if rect[2]>width:
+    nextLine=text[len(text)-1]+nextLine
+    text=text[0:len(text)-1]
+   else:
+    textArray.append(text)
+    text=nextLine
+    nextLine=""
+  pygame.draw.rect(screen,textBox.backgroundColor,textBox.textRect)
+  y=textBox.textRect[1]
+  x=textBox.textRect[0]
+  for text in textArray:
+   t=font.render(text,1,textBox.textColor)
+   tpos=t.get_rect()
+   tpos[0]=x
+   tpos[1]=y
+   screen.blit(t,tpos)
+   y+=tpos[3]
+
+
+
