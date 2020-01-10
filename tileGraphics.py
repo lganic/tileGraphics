@@ -9,9 +9,12 @@ class colorPalette:
   self.colors.append(color)
 
 class sprite:
- def __init__(self,graphicsInstance,fileName,backgroundColor=(-1,-1,-1)):
+ def __init__(self,graphicsInstance,fileName,backgroundColor=(-1,-1,-1),folder=""):
+  if folder!="":
+   if not folder.endswith("/") and not folder.endswith("\\"):
+    folder+="\\"
   from PIL import Image as image
-  im=image.open(fileName)
+  im=image.open(folder+fileName)
   rgb_im =im.convert("RGB")
   self.size=graphicsInstance.tileWidth
   self.pixdata=[]
@@ -30,6 +33,25 @@ class sprite:
   self.backColor=backgroundColor
  def setBackgroundColor(self,color):
   self.backColor=color
+
+class complexSprite:
+ def __init__(self,graphicsInstance,folder,backgroundColor=(-1,-1,-1)):
+  if not folder.endswith("/") and not folder.endswith("\\"):
+   folder+="\\"
+  self.sprites=[]
+  import os
+  l=os.listdir(folder)
+  text="__error__"
+  for a in l:
+   if a.endswith(".cplx"):
+    text=open(folder+a,"r").read()
+  l=text.split("\n")
+  self.positions=[]
+  for a in l:
+   temp=a.split(" ")
+   self.sprites.append(sprite(graphicsInstance,temp[0],backgroundColor=backgroundColor,folder=folder))
+   self.positions.append((int(temp[1]),int(temp[2])))
+
 
 class textBox:
  def __init__(self,graphicsInstance,x,y,width,height,font="arialms",textSize=100,textColor=(255,255,255),backgroundColor=(0,0,0),border=False,bold=False):
@@ -157,6 +179,17 @@ class graphics:
    tpos[1]=y
    screen.blit(t,tpos)
    y+=tpos[3]
-
+ def putComplexSprite(self,x,y,complexSprite):
+  for parse in enumerate(complexSprite.sprites):
+   nx=complexSprite.positions[parse[0]][0]+x
+   ny=complexSprite.positions[parse[0]][1]+y
+   pygame.draw.rect(screen,self.palette.get(self.matrix[y][x]),(nx*self.tileWidth,y*self.tileWidth,self.tileWidth,self.tileWidth))
+   px=nx*self.tileWidth
+   py=ny*self.tileWidth
+   for iy in range(self.tileWidth):
+    for ix in range(self.tileWidth):
+     pix=parse[1].pixdata[iy][ix]
+     if pix!=parse[1].backColor:
+      screen.set_at((ix+px,iy+py),pix)
 
 
