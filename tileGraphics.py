@@ -147,14 +147,21 @@ class graphics:
  def quit(self):
   pygame.quit()
  def putSprite(self,x,y,sprite):
-  pygame.draw.rect(screen,self.palette.get(self.matrix[y][x]),((x)*self.tileWidth,(y)*self.tileWidth,self.tileWidth,self.tileWidth))
+  xpart=x-int(x)
+  ypart=y-int(y)
+  x=int(x)
+  y=int(y)
+  xpart*=self.tileWidth
+  ypart*=self.tileWidth
+  xpart=int(xpart)
+  ypart=int(ypart)
   px=x*self.tileWidth
   py=y*self.tileWidth
   for y in range(self.tileWidth):
    for x in range(self.tileWidth):
     pix=sprite.pixdata[y][x]
     if pix!=sprite.backColor:
-     screen.set_at((x+px,y+py),pix)
+     screen.set_at((x+px+xpart,y+py+ypart),pix)
  def putTextBox(self,textBox,text):
   font=pygame.font.SysFont(textBox.font,textBox.textSize,bold=textBox.bold)
   width=textBox.textRect[2]
@@ -183,13 +190,24 @@ class graphics:
   for parse in enumerate(complexSprite.sprites):
    nx=complexSprite.positions[parse[0]][0]+x
    ny=complexSprite.positions[parse[0]][1]+y
-   pygame.draw.rect(screen,self.palette.get(self.matrix[y][x]),(nx*self.tileWidth,y*self.tileWidth,self.tileWidth,self.tileWidth))
-   px=nx*self.tileWidth
-   py=ny*self.tileWidth
-   for iy in range(self.tileWidth):
-    for ix in range(self.tileWidth):
-     pix=parse[1].pixdata[iy][ix]
-     if pix!=parse[1].backColor:
-      screen.set_at((ix+px,iy+py),pix)
-
+   self.putSprite(nx,ny,parse[1])
+ def removeSprite(self,x,y):
+  xpart=x-int(x)
+  ypart=y-int(y)
+  xrange=[0,1]
+  if xpart!=0:
+   xrange=[0,2]
+  yrange=[0,1]
+  if ypart!=0:
+   yrange=[0,2]
+  x=int(x)
+  y=int(y)
+  for tx in range(xrange[0],xrange[1]):
+   for ty in range(yrange[0],yrange[1]):
+    pygame.draw.rect(screen,self.palette.get(self.matrix[y+ty][x+tx]),((x+tx)*self.tileWidth,(y+ty)*self.tileWidth,self.tileWidth,self.tileWidth))
+ def removeComplexSprite(self,x,y,complexSprite):
+  for parse in enumerate(complexSprite.sprites):
+   nx=complexSprite.positions[parse[0]][0]+x
+   ny=complexSprite.positions[parse[0]][1]+y
+   self.removeSprite(nx,ny)
 
