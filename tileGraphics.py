@@ -35,7 +35,7 @@ class sprite:
   self.backColor=color
 
 class complexSprite:
- def __init__(self,graphicsInstance,folder,backgroundColor=(-1,-1,-1)):
+ def __init__(self,graphicsInstance,folder,backgroundColor=(-1,-1,-1),name=""):
   if not folder.endswith("/") and not folder.endswith("\\"):
    folder+="\\"
   self.sprites=[]
@@ -44,7 +44,8 @@ class complexSprite:
   text="__error__"
   for a in l:
    if a.endswith(".cplx"):
-    text=open(folder+a,"r").read()
+    if name=="" or a==name or a==name+".cplx":
+     text=open(folder+a,"r").read()
   l=text.split("\n")
   self.positions=[]
   for a in l:
