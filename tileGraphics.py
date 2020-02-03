@@ -1,3 +1,19 @@
+class complexSpriteManager:
+ def __init__(self,graphicsInstance,folder,backgroundColor=(-1,-1,-1)):
+  import os
+  self.data={}
+  lst=os.listdir(folder)
+  for a in lst:
+   if a.endswith(".cplx"):
+    self.data[a]=complexSprite(graphicsInstance,folder,backgroundColor=backgroundColor,name=a)
+ def get(self,name):
+  if not name.endswith(".cplx"):
+   name+=".cplx"
+  return self.data[name]
+ def getNames(self):
+  return list(self.data.keys())
+
+
 class colorPalette:
  def __init__(self,*args):
   self.colors=[]
