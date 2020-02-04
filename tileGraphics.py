@@ -163,6 +163,8 @@ class graphics:
   return pygame.mouse.get_pressed()[button]==1
  def quit(self):
   pygame.quit()
+ def highlight(self,x,y,color,width=3):
+  pygame.draw.rect(screen,color,(x*self.tileWidth,y*self.tileWidth,self.tileWidth,self.tileWidth),width)
  def putSprite(self,x,y,sprite):
   xpart=x-int(x)
   ypart=y-int(y)
