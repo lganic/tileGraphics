@@ -1,3 +1,18 @@
+class spriteManager:
+ def __init__(self,graphicsInstance,folder,backgroundColor=(-1,-1,-1)):
+  import os
+  self.data={}
+  lst=os.listdir(folder)
+  for a in lst:
+   if a.endswith(".png"):
+    self.data[a]=sprite(graphicsInstance,a,backgroundColor=backgroundColor,folder=folder)
+ def get(self,name):
+  if not name.endswith(".png"):
+   name+=".png"
+  return self.data[name]
+ def getNames(self):
+  return list(self.data.keys())
+
 class complexSpriteManager:
  def __init__(self,graphicsInstance,folder,backgroundColor=(-1,-1,-1)):
   import os
