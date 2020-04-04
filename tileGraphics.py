@@ -137,9 +137,14 @@ class graphics:
    temp.append(0)
   for y in range(height):
    self.matrix.append(copy.copy(temp))
- def update(self):
-  pygame.event.get()
+ def update(self,fullQuit=False):
+  events=pygame.event.get()
   pygame.display.flip()
+  for event in events:
+   if event.type==pygame.QUIT:
+    pygame.quit()
+    if fullQuit:
+     exit()
  def put(self,x,y,colorIndex,width=1,height=1):
   for a in range(width):
    for b in range(height):
