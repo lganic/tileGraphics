@@ -145,7 +145,12 @@ class graphics:
     pygame.quit()
     if fullQuit:
      exit()
- def put(self,x,y,colorIndex,width=1,height=1):
+ def put(self,x,y,color,width=1,height=1):
+  if type(color)==tuple:
+   self.palette.add(color)
+   colorIndex=len(self.palette.colors)-1
+  else:
+   colorIndex=color
   for a in range(width):
    for b in range(height):
     self.matrix[y+b][x+a]=colorIndex
