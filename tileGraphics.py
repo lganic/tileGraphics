@@ -86,23 +86,28 @@ class complexSprite:
 
 
 class textBox:
- def __init__(self,graphicsInstance,x,y,width,height,font="arialms",textSize=100,textColor=(255,255,255),backgroundColor=(0,0,0),border=False,bold=False):
+ def __init__(self,graphicsInstance,x,y,width,height,font="arialms",nRows=5,textColor=(255,255,255),backgroundColor=(0,0,0),border=False,bold=False,rowBoxes=False):
+  self.nRows=nRows
   self.bold=bold
   tw=graphicsInstance.tileWidth
   self.textRect=(tw*x,tw*y,width*tw,height*tw)
   self.border=border
   self.font=font
-  self.textSize=textSize
   self.textColor=textColor
   self.backgroundColor=backgroundColor
+  self.x=x
+  self.y=y
+  self.width=width
+  self.height=height
+  self.rowBoxes=rowBoxes
  def setBorder(self,border):
   self.border=border
  def setBackgroundColor(self,color):
   self.backgroundColor=color
  def setTextColor(self,color):
   self.textColor=color
- def setTextSize(self,size):
-  self.textSize=size
+ def setNRows(self,number):
+  self.nRows=number
  def setFont(self,font):
   self.font=font
  def setBold(self,bold):
@@ -145,12 +150,7 @@ class graphics:
     pygame.quit()
     if fullQuit:
      exit()
- def put(self,x,y,color,width=1,height=1):
-  if type(color)==tuple:
-   self.palette.add(color)
-   colorIndex=len(self.palette.colors)-1
-  else:
-   colorIndex=color
+ def put(self,x,y,colorIndex,width=1,height=1):
   for a in range(width):
    for b in range(height):
     self.matrix[y+b][x+a]=colorIndex
@@ -206,8 +206,29 @@ class graphics:
     pix=sprite.pixdata[y][x]
     if pix!=sprite.backColor:
      screen.set_at((x+px+xpart,y+py+ypart),pix)
+ def putTextArray(self,textBox,textArray):
+  if len(textArray)>textBox.nRows:
+   raise(IndexError("size of text array is too large for textBox object to handle"))
+  pygame.draw.rect(screen,textBox.backgroundColor,(textBox.x*self.tileWidth,textBox.y*self.tileWidth,textBox.width*self.tileWidth,textBox.height*self.tileWidth))
+  if textBox.border:
+   pygame.draw.rect(screen,textBox.textColor,(textBox.x*self.tileWidth,textBox.y*self.tileWidth,textBox.width*self.tileWidth,textBox.height*self.tileWidth),1)
+  textSize=(textBox.height*self.tileWidth)/textBox.nRows
+  font=pygame.font.SysFont(textBox.font,int(textSize),bold=textBox.bold)
+  y=textBox.y
+  for a in textArray:
+   if textBox.rowBoxes:
+    pygame.draw.rect(screen,textBox.textColor,(textBox.x*self.tileWidth,int(y),textBox.width*self.tileWidth,textSize),1)
+   t=font.render(a,1,textBox.textColor)
+   tpos=t.get_rect()
+   tpos[0]=textBox.x
+   tpos[1]=int(y)
+   screen.blit(t,tpos)
+   y+=textSize
  def putTextBox(self,textBox,text):
-  font=pygame.font.SysFont(textBox.font,textBox.textSize,bold=textBox.bold)
+  if textBox.border:
+   pygame.draw.rect(screen,textBox.textColor,(textBox.x*self.tileWidth,textBox.y*self.tileWidth,textBox.width*self.tileWidth,textBox.height*self.tileWidth))
+  textSize=(textBox.height*self.tileWidth)/textBox.nRows
+  font=pygame.font.SysFont(textBox.font,int(textSize),bold=textBox.bold)
   width=textBox.textRect[2]
   nextLine=""
   textArray=[]
@@ -226,6 +247,8 @@ class graphics:
   for text in textArray:
    t=font.render(text,1,textBox.textColor)
    tpos=t.get_rect()
+   if textBox.rowBoxes:
+    pygame.draw.rect(screen,textBox.textColor,(textBox.x*self.tileWidth,y,textBox.width*self.tileWidth,tpos[3]),1)
    tpos[0]=x
    tpos[1]=y
    screen.blit(t,tpos)
@@ -254,4 +277,3 @@ class graphics:
    nx=complexSprite.positions[parse[0]][0]+x
    ny=complexSprite.positions[parse[0]][1]+y
    self.removeSprite(nx,ny)
-
