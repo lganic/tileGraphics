@@ -35,6 +35,8 @@ class colorPalette:
   for a in args:
    self.colors.append(a)
  def get(self,index):
+  if type(index)==tuple:
+   return index
   return self.colors[index]
  def add(self,color):
   self.colors.append(color)
