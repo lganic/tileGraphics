@@ -1,6 +1,7 @@
 keycodes={'BACKSPACE':8,'TAB':9,'CLEAR':12,'RETURN':13,'PAUSE':19,'ESCAPE':27,'SPACE':32,'EXCLAIM':33,'QUOTEDBL':34,'HASH':35,'DOLLAR':36,'AMPERSAND':38,'QUOTE':39,'LEFTPAREN':40,'RIGHTPAREN':41,'ASTERISK':42,'PLUS':43,'COMMA':44,'MINUS':45,'PERIOD':46,'SLASH':47,'0':48,'1':49,'2':50,'3':51,'4':52,'5':53,'6':54,'7':55,'8':56,'9':57,'COLON':58,'SEMICOLON':59,'LESS':60,'EQUALS':61,'GREATER':62,'QUESTION':63,'AT':64,'LEFTBRACKET':91,'BACKSLASH':92,'RIGHTBRACKET':93,'CARET':94,'UNDERSCORE':95,'BACKQUOTE':96,'a':97,'b':98,'c':99,'d':100,'e':101,'f':102,'g':103,'h':104,'i':105,'j':106,'k':107,'l':108,'m':109,'n':110,'o':111,'p':112,'q':113,'r':114,'s':115,'t':116,'u':117,'v':118,'w':119,'x':120,'y':121,'z':122,'DELETE':127,'KP0':256,'KP1':257,'KP2':258,'KP3':259,'KP4':260,'KP5':261,'KP6':262,'KP7':263,'KP8':264,'KP9':265,'KP_PERIOD':266,'KP_DIVIDE':267,'KP_MULTIPLY':268,'KP_MINUS':269,'KP_PLUS':270,'KP_ENTER':271,'KP_EQUALS':272,'UP':273,'DOWN':274,'RIGHT':275,'LEFT':276,'INSERT':277,'HOME':278,'END':279,'PAGEUP':280,'PAGEDOWN':281,'F1':282,'F2':283,'F3':284,'F4':285,'F5':286,'F6':287,'F7':288,'F8':289,'F9':290,'F10':291,'F11':292,'F12':293,'F13':294,'F14':295,'F15':296,'NUMLOCK':300,'CAPSLOCK':301,'SCROLLOCK':302,'RSHIFT':303,'LSHIFT':304,'RCTRL':305,'LCTRL':306,'RALT':307,'LALT':308,'RMETA':309,'LMETA':310,'LSUPER':311,'RSUPER':312,'MODE':313,'HELP':315,'PRINT':316,'SYSREQ':317,'BREAK':318,'MENU':319,'POWER':320,'EURO':321}
 
 from PIL import Image as image
+import time
 
 class sizeSprite:
 	def __init__(self,graphicsInstance,fileName,width,height,backgroundColor=(-1,-1,-1),folder=""):
@@ -110,6 +111,8 @@ class colorPalette:
 		for a in args:
 			self.colors.append(a)
 	def get(self,index):
+		if type(index)==str:
+			return tuple(int(index[i:i+2], 16) for i in (0, 2, 4))#thanks to John1024 for this beautiful line of code
 		if type(index)==tuple:
 			return index
 		return self.colors[index]
@@ -222,7 +225,7 @@ class legacyComplexSprite:
 		self.positions=[]
 		for a in l:
 			temp=a.split(" ")
-			self.sprites.append(sprite(graphicsInstance,temp[0],backgroundColor=backgroundColor,folder=folder))
+			self.sprites.append(legacySprite(graphicsInstance,temp[0],backgroundColor=backgroundColor,folder=folder))
 			self.positions.append((int(temp[1]),int(temp[2])))
 
 
@@ -370,10 +373,11 @@ class textBox:
 
 
 class graphics:
-	def __init__(self,width,height,palette="standard",roughSize=-1,screenWidth=None,screenHeight=None,fullScreen=False,roughPercent=-1,fullScreenKey=292):
+	def __init__(self,width,height,palette="standard",roughSize=-1,screenWidth=None,screenHeight=None,fullScreen=False,roughPercent=-1,fullScreenKey=292,noResize=False,fps=-1):
 		self.fsKey=fullScreenKey
 		global pygame,screen
 		import pygame
+		self.noResize=noResize
 		pygame.init()
 		obj=pygame.display.Info()
 		if screenWidth==None:
@@ -402,7 +406,10 @@ class graphics:
 		self.size=(self.screenWidth,self.screenHeight)
 		pygame.font.init()
 		if not fullScreen:
-			screen=pygame.display.set_mode(self.size,pygame.RESIZABLE)
+			if self.noResize:
+				screen=pygame.display.set_mode(self.size)
+			else:
+				screen=pygame.display.set_mode(self.size,pygame.RESIZABLE)
 		else:
 			screen=pygame.display.set_mode((0,0),pygame.FULLSCREEN)
 			self.size=screen.get_size()
@@ -423,12 +430,23 @@ class graphics:
 		self.spriteReloadNum=0
 		self.fullScreenOutRes=self.size
 		self.resizeBool=False
+		self.fullScreenKey=fullScreenKey
+		self.targetDelta=1/fps
+		self.deltaTime=0
+		self.frametime=time.time()
 	def setIcon(self,imageName):
 		if not "." in imageName:
 			imageName+=".png"
 		surf=pygame.image.load(imageName)
 		pygame.display.set_icon(surf)
 	def update(self,fullQuit=False):
+		t=time.time()
+		self.deltatime=t-self.frametime
+		self.frametime=t
+		if self.deltaTime<self.targetDelta:
+			offset=self.targetDelta-self.deltaTime
+			time.sleep(offset)
+			self.deltaTime+=offset
 		if self.drawCall:
 			pygame.display.flip()
 			self.drawCall=False
@@ -440,7 +458,8 @@ class graphics:
 					exit()
 			if event.type==pygame.KEYDOWN and event.key==self.fullScreenKey:
 				self.fullscreenToggle=True
-			if event.type==pygame.VIDEORESIZE or self.fullscreenToggle or self.resizeBool:
+			if not self.noResize and (event.type==pygame.VIDEORESIZE or self.fullscreenToggle or self.resizeBool):
+				self.resized=True
 				global screen
 				if self.fullScreen:
 					oldwidthoffset=self.fullScreenWidth-self.width*self.tileWidth
@@ -496,6 +515,23 @@ class graphics:
 				pygame.event.get()
 				if oldwidth!=self.tileWidth:
 					self.spriteReloadNum+=1
+	def setResizeable(self,resizeable):
+		global screen
+		if resizeable==self.noResize:
+			self.noResize=not resizeable
+			tempscreen=pygame.Surface((self.screenWidth,self.screenHeight))
+			tempscreen.blit(screen,(0,0))
+			if self.noResize:
+				screen=pygame.display.set_mode((self.screenWidth,self.screenHeight))
+			else:
+				screen=pygame.display.set_mode((self.screenWidth,self.screenHeight),pygame.RESIZABLE)
+			screen.blit(tempscreen,(0,0))
+	def getResizedBool(self):
+		out=self.resized
+		self.resized=False
+		return out
+	def setFPS(self,fps):
+		self.targetDelta=1/fps
 	def resize(self,width,height):
 		self.width=width
 		self.height=height
@@ -503,6 +539,10 @@ class graphics:
 		self.matrix=[]
 		for y in range(height):
 			self.matrix.append(([0]*self.width).copy())
+		self.update()
+	def resizeScreen(self,pixelWidth,pixelHeight):
+		self.size=(pixelWidth,pixelHeight)
+		self.resizeBool=True
 		self.update()
 	def screenshot(self,imageName):
 		pygame.image.save(screen,imageName)
@@ -670,7 +710,14 @@ class graphics:
 		for parse in enumerate(complexSprite.sprites):
 			nx=complexSprite.positions[parse[0]][0]+x
 			ny=complexSprite.positions[parse[0]][1]+y
-			self.putSprite(nx,ny,parse[1])
+			self.putLegacySprite(nx,ny,parse[1])
+	def putSecLegacyComplexSprite(self,x,y,complexSprite,spritex,spritey):
+		self.drawCall=True
+		for parse in enumerate(complexSprite.sprites):
+			nx=complexSprite.positions[parse[0]][0]
+			ny=complexSprite.positions[parse[0]][1]
+			if nx==spritex and ny==spritey:
+				self.putLegacySprite(nx+x,ny+y,parse[1])
 	def removeSprite(self,x,y):
 		self.drawCall=True
 		xpart=x-int(x)
