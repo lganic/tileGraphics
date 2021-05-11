@@ -254,6 +254,7 @@ class complexSprite:
 			snames.append(temp[0])
 			sxp.append(int(temp[1]))
 			syp.append(int(temp[2]))
+		self.positions=zip(sxp,syp)
 		self.height=max(syp)+1
 		self.width=max(sxp)+1
 		mat=[]
@@ -733,9 +734,19 @@ class graphics:
 		for tx in range(xrange[0],xrange[1]):
 			for ty in range(yrange[0],yrange[1]):
 				pygame.draw.rect(screen,self.palette.get(self.matrix[y+ty][x+tx]),((x+tx)*self.tileWidth,(y+ty)*self.tileWidth,self.tileWidth,self.tileWidth))
-	def removeComplexSprite(self,x,y,complexSprite):
+	def removeLegacyComplexSprite(self,x,y,complexSprite):
 		self.drawCall=True
 		for parse in enumerate(complexSprite.sprites):
 			nx=complexSprite.positions[parse[0]][0]+x
 			ny=complexSprite.positions[parse[0]][1]+y
 			self.removeSprite(nx,ny)
+	def removeComplexSprite(self,x,y,complexSprite):
+		self.drawCall=True
+		for xo, yo in complexSprite.positions:
+			self.removeSprite(x+xo,y+yo)
+	def removeSizeSprite(self,x,y,sizeSprite):
+		import math
+		self.drawCall=True
+		for yo in range(math.ceil(sizeSprite.height)):
+			for xo in range(math.ceil(sizeSprite.width)):
+				self.put(int(x+xo),int(y+yo),self.get(x+xo,y+yo))
