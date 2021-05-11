@@ -423,6 +423,11 @@ class graphics:
 		self.spriteReloadNum=0
 		self.fullScreenOutRes=self.size
 		self.resizeBool=False
+	def setIcon(self,imageName):
+		if not "." in imageName:
+			imageName+=".png"
+		surf=pygame.image.load(imageName)
+		pygame.display.set_icon(surf)
 	def update(self,fullQuit=False):
 		if self.drawCall:
 			pygame.display.flip()
