@@ -1,7 +1,9 @@
-keycodes={'BACKSPACE':8,'TAB':9,'CLEAR':12,'RETURN':13,'PAUSE':19,'ESCAPE':27,'SPACE':32,'EXCLAIM':33,'QUOTEDBL':34,'HASH':35,'DOLLAR':36,'AMPERSAND':38,'QUOTE':39,'LEFTPAREN':40,'RIGHTPAREN':41,'ASTERISK':42,'PLUS':43,'COMMA':44,'MINUS':45,'PERIOD':46,'SLASH':47,'0':48,'1':49,'2':50,'3':51,'4':52,'5':53,'6':54,'7':55,'8':56,'9':57,'COLON':58,'SEMICOLON':59,'LESS':60,'EQUALS':61,'GREATER':62,'QUESTION':63,'AT':64,'LEFTBRACKET':91,'BACKSLASH':92,'RIGHTBRACKET':93,'CARET':94,'UNDERSCORE':95,'BACKQUOTE':96,'a':97,'b':98,'c':99,'d':100,'e':101,'f':102,'g':103,'h':104,'i':105,'j':106,'k':107,'l':108,'m':109,'n':110,'o':111,'p':112,'q':113,'r':114,'s':115,'t':116,'u':117,'v':118,'w':119,'x':120,'y':121,'z':122,'DELETE':127,'KP0':256,'KP1':257,'KP2':258,'KP3':259,'KP4':260,'KP5':261,'KP6':262,'KP7':263,'KP8':264,'KP9':265,'KP_PERIOD':266,'KP_DIVIDE':267,'KP_MULTIPLY':268,'KP_MINUS':269,'KP_PLUS':270,'KP_ENTER':271,'KP_EQUALS':272,'UP':273,'DOWN':274,'RIGHT':275,'LEFT':276,'INSERT':277,'HOME':278,'END':279,'PAGEUP':280,'PAGEDOWN':281,'F1':282,'F2':283,'F3':284,'F4':285,'F5':286,'F6':287,'F7':288,'F8':289,'F9':290,'F10':291,'F11':292,'F12':293,'F13':294,'F14':295,'F15':296,'NUMLOCK':300,'CAPSLOCK':301,'SCROLLOCK':302,'RSHIFT':303,'LSHIFT':304,'RCTRL':305,'LCTRL':306,'RALT':307,'LALT':308,'RMETA':309,'LMETA':310,'LSUPER':311,'RSUPER':312,'MODE':313,'HELP':315,'PRINT':316,'SYSREQ':317,'BREAK':318,'MENU':319,'POWER':320,'EURO':321}
+import pygame
+keycodes={'BACKSPACE':pygame.K_BACKSPACE,'TAB':pygame.K_TAB,'CLEAR':pygame.K_CLEAR,'RETURN':pygame.K_RETURN,'PAUSE':pygame.K_PAUSE,'ESCAPE':pygame.K_ESCAPE,'SPACE':pygame.K_SPACE,'EXCLAIM':pygame.K_EXCLAIM,'QUOTEDBL':pygame.K_QUOTEDBL,'HASH':pygame.K_HASH,'DOLLAR':pygame.K_DOLLAR,'AMPERSAND':pygame.K_AMPERSAND,'QUOTE':pygame.K_QUOTE,'LEFTPAREN':pygame.K_LEFTPAREN,'RIGHTPAREN':pygame.K_RIGHTPAREN,'ASTERISK':pygame.K_ASTERISK,'PLUS':pygame.K_PLUS,'COMMA':pygame.K_COMMA,'MINUS':pygame.K_MINUS,'PERIOD':pygame.K_PERIOD,'SLASH':pygame.K_SLASH,'0':pygame.K_0,'1':pygame.K_1,'2':pygame.K_2,'3':pygame.K_3,'4':pygame.K_4,'5':pygame.K_5,'6':pygame.K_6,'7':pygame.K_7,'8':pygame.K_8,'9':pygame.K_9,'COLON':pygame.K_COLON,'SEMICOLON':pygame.K_SEMICOLON,'LESS':pygame.K_LESS,'EQUALS':pygame.K_EQUALS,'GREATER':pygame.K_GREATER,'QUESTION':pygame.K_QUESTION,'AT':pygame.K_AT,'LEFTBRACKET':pygame.K_LEFTBRACKET,'BACKSLASH':pygame.K_BACKSLASH,'RIGHTBRACKET':pygame.K_RIGHTBRACKET,'CARET':pygame.K_CARET,'UNDERSCORE':pygame.K_UNDERSCORE,'BACKQUOTE':pygame.K_BACKQUOTE,'a':pygame.K_a,'b':pygame.K_b,'c':pygame.K_c,'d':pygame.K_d,'e':pygame.K_e,'f':pygame.K_f,'g':pygame.K_g,'h':pygame.K_h,'i':pygame.K_i,'j':pygame.K_j,'k':pygame.K_k,'l':pygame.K_l,'m':pygame.K_m,'n':pygame.K_n,'o':pygame.K_o,'p':pygame.K_p,'q':pygame.K_q,'r':pygame.K_r,'s':pygame.K_s,'t':pygame.K_t,'u':pygame.K_u,'v':pygame.K_v,'w':pygame.K_w,'x':pygame.K_x,'y':pygame.K_y,'z':pygame.K_z,'DELETE':pygame.K_DELETE,'KP0':pygame.K_KP0,'KP1':pygame.K_KP1,'KP2':pygame.K_KP2,'KP3':pygame.K_KP3,'KP4':pygame.K_KP4,'KP5':pygame.K_KP5,'KP6':pygame.K_KP6,'KP7':pygame.K_KP7,'KP8':pygame.K_KP8,'KP9':pygame.K_KP9,'KP_PERIOD':pygame.K_KP_PERIOD,'KP_DIVIDE':pygame.K_KP_DIVIDE,'KP_MULTIPLY':pygame.K_KP_MULTIPLY,'KP_MINUS':pygame.K_KP_MINUS,'KP_PLUS':pygame.K_KP_PLUS,'KP_ENTER':pygame.K_KP_ENTER,'KP_EQUALS':pygame.K_KP_EQUALS,'UP':pygame.K_UP,'DOWN':pygame.K_DOWN,'RIGHT':pygame.K_RIGHT,'LEFT':pygame.K_LEFT,'INSERT':pygame.K_INSERT,'HOME':pygame.K_HOME,'END':pygame.K_END,'PAGEUP':pygame.K_PAGEUP,'PAGEDOWN':pygame.K_PAGEDOWN,'F1':pygame.K_F1,'F2':pygame.K_F2,'F3':pygame.K_F3,'F4':pygame.K_F4,'F5':pygame.K_F5,'F6':pygame.K_F6,'F7':pygame.K_F7,'F8':pygame.K_F8,'F9':pygame.K_F9,'F10':pygame.K_F10,'F11':pygame.K_F11,'F12':pygame.K_F12,'F13':pygame.K_F13,'F14':pygame.K_F14,'F15':pygame.K_F15,'NUMLOCK':pygame.K_NUMLOCK,'CAPSLOCK':pygame.K_CAPSLOCK,'SCROLLOCK':pygame.K_SCROLLOCK,'RSHIFT':pygame.K_RSHIFT,'LSHIFT':pygame.K_LSHIFT,'RCTRL':pygame.K_RCTRL,'LCTRL':pygame.K_LCTRL,'RALT':pygame.K_RALT,'LALT':pygame.K_LALT,'RMETA':pygame.K_RMETA,'LMETA':pygame.K_LMETA,'LSUPER':pygame.K_LSUPER,'RSUPER':pygame.K_RSUPER,'MODE':pygame.K_MODE,'HELP':pygame.K_HELP,'PRINT':pygame.K_PRINT,'SYSREQ':pygame.K_SYSREQ,'BREAK':pygame.K_BREAK,'MENU':pygame.K_MENU,'POWER':pygame.K_POWER,'EURO':pygame.K_EURO}
 
 from PIL import Image as image
-import time
+import time,threading
+
 
 class sizeSprite:
 	def __init__(self,graphicsInstance,fileName,width,height,backgroundColor=(-1,-1,-1),folder=""):
@@ -62,13 +64,13 @@ class sizeSprite:
 					colorBuffer+=[a for a in color]+[0]
 				else:
 					if len(colorBuffer)>0:
-						buffer.append(colorBuffer.copy())
+						buffer.append(tuple(colorBuffer.copy()))
 						colorBuffer=[]
 					blanks+=1
 			if len(colorBuffer)>0:
-				buffer.append(colorBuffer.copy())
+				buffer.append(tuple(colorBuffer.copy()))
 				colorBuffer=[]
-			self.pixdata.append(buffer.copy())
+			self.pixdata.append(tuple(buffer.copy()))
 
 class spriteManager:
 	def __init__(self,graphicsInstance,*spriteFolder,backgroundColor=(-1,-1,-1)):
@@ -372,21 +374,28 @@ class textBox:
 	def setBold(self,bold):
 		self.bold=bold
 
-
 class graphics:
-	def __init__(self,width,height,palette="standard",roughSize=-1,screenWidth=None,screenHeight=None,fullScreen=False,roughPercent=-1,fullScreenKey=292,noResize=False,fps=-1):
+	def __init__(self,width,height,palette="standard",roughSize=-1,screenWidth=None,screenHeight=None,fullScreen=False,roughPercent=-1,fullScreenKey=keycodes["F11"],noResize=False,fps=-1,backgroundImage=None,trackBackgroundLocation=False,showFps=False):
 		self.fsKey=fullScreenKey
-		global pygame,screen
-		import pygame
+		self.mouseScroll=0
+		self.resized=False
+		self.debugKey=None
+		self.eventQue=[]
+		global pygame,screen,blitScreen
 		self.noResize=noResize
 		pygame.init()
-		obj=pygame.display.Info()
+		if not '_fScreenSize' in globals():
+			obj=pygame.display.Info()
+			self.fullScreenWidth=obj.current_w
+			self.fullScreenHeight=obj.current_h
+			global _fScreenSize
+			_fScreenSize=(self.fullScreenWidth,self.fullScreenHeight)
+		else:
+			self.fullScreenWidth, self.fullScreenHeight=_fScreenSize
 		if screenWidth==None:
-			screenWidth=obj.current_w
+			screenWidth=self.fullScreenWidth
 		if screenHeight==None:
-			screenHeight=obj.current_h
-		self.fullScreenWidth=obj.current_w
-		self.fullScreenHeight=obj.current_h
+			screenHeight=self.fullScreenHeight
 		if roughSize!=-1:
 			screenWidth=roughSize
 			screenHeight=roughSize
@@ -406,17 +415,18 @@ class graphics:
 		self.screenHeight=self.tileWidth*height
 		self.size=(self.screenWidth,self.screenHeight)
 		pygame.font.init()
+		screen=pygame.Surface((self.screenWidth,self.screenHeight))
 		if not fullScreen:
 			if self.noResize:
-				screen=pygame.display.set_mode(self.size)
+				blitScreen=pygame.display.set_mode(self.size)
 			else:
-				screen=pygame.display.set_mode(self.size,pygame.RESIZABLE)
+				blitScreen=pygame.display.set_mode(self.size,pygame.RESIZABLE)
 		else:
-			screen=pygame.display.set_mode((0,0),pygame.FULLSCREEN)
+			blitScreen=pygame.display.set_mode((0,0),pygame.FULLSCREEN)
 			self.size=screen.get_size()
 			self.screenWidth=self.size[0]
 			self.screenHeight=self.size[1]
-		screen.fill(palette.get(0))
+		blitScreen.fill(palette.get(0))
 		self.matrix=[]
 		self.palette=palette
 		self.fullScreen=fullScreen
@@ -433,35 +443,67 @@ class graphics:
 		self.resizeBool=False
 		self.fullScreenKey=fullScreenKey
 		self.targetDelta=1/fps
-		self.deltaTime=0
+		self.keyQue=[]
+		self.deltaTime=99**99
 		self.frametime=time.time()
+		self.backgroundMode=False#use matrix data
+		if backgroundImage!=None:
+			self.setBackgroundImage(backgroundImage)
+		self.trackBackgroundLocation=trackBackgroundLocation
+		self.showFps=showFps
+		if self.showFps:
+			self._fpsFont=pygame.font.SysFont("arialms",30,bold=True)
 	def setIcon(self,imageName):
 		if not "." in imageName:
 			imageName+=".png"
 		surf=pygame.image.load(imageName)
 		pygame.display.set_icon(surf)
+	def eventGet(self):
+		self.eventQue+=pygame.event.get()
 	def update(self,fullQuit=False):
+		global blitScreen,screen
+		if self.drawCall:
+			if self.showFps:
+				t=self._fpsFont.render(str(round(1/self.deltaTime,2)),1,(0,255,0))
+				tpos=t.get_rect()
+				pygame.draw.rect(blitScreen,(0,0,0),tpos)
+				screen.blit(t,tpos)
+			blitScreen.blit(screen,(0,0))
+			pygame.display.flip()
+			self.drawCall=False
+		events=(self.eventQue+pygame.event.get()).copy()
+		self.eventQue=[]
 		t=time.time()
-		self.deltatime=t-self.frametime
+		self.deltaTime=t-self.frametime
 		self.frametime=t
 		if self.deltaTime<self.targetDelta:
 			offset=self.targetDelta-self.deltaTime
 			time.sleep(offset)
 			self.deltaTime+=offset
-		if self.drawCall:
-			pygame.display.flip()
-			self.drawCall=False
-		events=pygame.event.get()
 		for event in events:
+			if event.type==pygame.KEYDOWN:
+				k=event.key
+				if not k in self.keyQue:
+					self.keyQue+=[k]
+			elif event.type==pygame.KEYUP:
+				k=event.key
+				if k in self.keyQue:
+					self.keyQue.remove(k)
 			if event.type==pygame.QUIT:
 				pygame.quit()
 				if fullQuit:
 					exit()
+			if event.type == pygame.MOUSEBUTTONDOWN:
+				if event.button==4:
+					self.mouseScroll+=1
+				elif event.button==5:
+					self.mouseScroll-=1
 			if event.type==pygame.KEYDOWN and event.key==self.fullScreenKey:
 				self.fullscreenToggle=True
 			if not self.noResize and (event.type==pygame.VIDEORESIZE or self.fullscreenToggle or self.resizeBool):
+				pygame.image.save(screen,"testscreen.png")
 				self.resized=True
-				global screen
+				#global screen
 				if self.fullScreen:
 					oldwidthoffset=self.fullScreenWidth-self.width*self.tileWidth
 					oldheightoffset=self.fullScreenHeight-self.height*self.tileWidth
@@ -487,46 +529,91 @@ class graphics:
 				self.screenWidth=self.tileWidth*self.width
 				self.screenHeight=self.tileWidth*self.height
 				self.size=(self.screenWidth,self.screenHeight)
-				if oldwidthoffset==None:
-					screenBackup=pygame.transform.scale(screen,(self.screenWidth,self.screenHeight))
-				else:
-					screenBackup=pygame.Surface((self.fullScreenWidth-oldwidthoffset,self.fullScreenHeight-oldheightoffset))
-					screenBackup.blit(screen,(0,0),(0,0,self.fullScreenWidth-oldwidthoffset,self.fullScreenHeight-oldheightoffset))
-					screenBackup=pygame.transform.scale(screenBackup,(self.screenWidth,self.screenWidth))
+#				if oldwidthoffset==None:
+#					screenBackup=pygame.transform.scale(screen.copy(),(self.screenWidth,self.screenHeight))
+#				else:
+#					screenBackup=pygame.Surface((self.fullScreenWidth-oldwidthoffset,self.fullScreenHeight-oldheightoffset))
+#					screenBackup.blit(screen,(0,0),(0,0,self.fullScreenWidth-oldwidthoffset,self.fullScreenHeight-oldheightoffset))
+#					screenBackup=pygame.transform.scale(screenBackup,(self.screenWidth,self.screenWidth))
 				if not self.fullScreen:
 					self.fullScreenOutRes=self.size
-					screen=pygame.display.set_mode(self.size,pygame.RESIZABLE)
+					blitScreen=pygame.display.set_mode(self.size,pygame.RESIZABLE)
 				else:
-					screen=pygame.display.set_mode((self.fullScreenWidth,self.fullScreenHeight),pygame.FULLSCREEN)
+					blitScreen=pygame.display.set_mode((self.fullScreenWidth,self.fullScreenHeight),pygame.FULLSCREEN)
+				screen=pygame.transform.scale(screen,self.size)
 				if not self.resizeBool:
-					screen.blit(screenBackup,(0,0))
-					tempsize=screen.get_size()
+					blitScreen.blit(screen,(0,0))
+					tempsize=blitScreen.get_size()
 					b1=tempsize[0]>self.screenWidth
 					b2=tempsize[1]>self.screenHeight
 					if b1:
-						pygame.draw.rect(screen,self.palette.get(0),(self.screenWidth,0,tempsize[0]-self.screenWidth,self.screenHeight))
+						pygame.draw.rect(blitScreen,self.palette.get(0),(self.screenWidth,0,tempsize[0]-self.screenWidth,self.screenHeight))
 					if b2:
-						pygame.draw.rect(screen,self.palette.get(0),(0,self.screenHeight,self.screenWidth,tempsize[1]-self.screenHeight))
+						pygame.draw.rect(blitScreen,self.palette.get(0),(0,self.screenHeight,self.screenWidth,tempsize[1]-self.screenHeight))
 					if b1 and b2:
-						pygame.draw.rect(screen,self.palette.get(0),(self.screenWidth,self.screenHeight,tempsize[0]-self.screenWidth,tempsize[1]-self.screenHeight))
+						pygame.draw.rect(blitScreen,self.palette.get(0),(self.screenWidth,self.screenHeight,tempsize[0]-self.screenWidth,tempsize[1]-self.screenHeight))
 				else:
 					screen.fill((0,0,0))
 					self.resizeBool=False
+					blitScreen.blit(screen,(0,0))
 				pygame.display.flip()
 				pygame.event.get()
 				if oldwidth!=self.tileWidth:
 					self.spriteReloadNum+=1
+				if self.backgroundMode:
+					self.setBackgroundImage(self.backgroundImageSource,width=self.backgroundWidth,height=self.backgroundHeight)
 	def setResizeable(self,resizeable):
 		global screen
 		if resizeable==self.noResize:
 			self.noResize=not resizeable
-			tempscreen=pygame.Surface((self.screenWidth,self.screenHeight))
-			tempscreen.blit(screen,(0,0))
 			if self.noResize:
-				screen=pygame.display.set_mode((self.screenWidth,self.screenHeight))
+				blitScreen=pygame.display.set_mode((self.screenWidth,self.screenHeight))
 			else:
-				screen=pygame.display.set_mode((self.screenWidth,self.screenHeight),pygame.RESIZABLE)
-			screen.blit(tempscreen,(0,0))
+				blitScreen=pygame.display.set_mode((self.screenWidth,self.screenHeight),pygame.RESIZABLE)
+			blitScreen.blit(screen,(0,0))
+	def setBackgroundImage(self,backgroundImage,width=None,height=None,size=None):
+		twidth=self.width
+		theight=self.height
+		self.backgroundWidth=width
+		self.backgroundHeight=height
+		if size!=None:
+			twidth=size[0]
+			theight=size[1]
+		elif width!=None and height!=None:
+			twidth=width
+			theight=height
+		twidth*=self.tileWidth
+		theight*=self.tileWidth
+		self.backgroundImageSource=backgroundImage
+		self.backgroundMode=True#use background image
+		if not "." in backgroundImage:
+			backgroundImage+=".png"
+		img=image.open(backgroundImage).resize((twidth,theight))#this is stupid, i need to rewrite all this at some point
+		nimg=image.new("RGB",(img.size[0]+2*self.screenWidth,img.size[1]+2*self.screenHeight))
+		nimg.paste(img,(self.screenWidth,self.screenHeight))
+		self.backgroundSurface=pygame.image.fromstring(nimg.tobytes(),nimg.size,nimg.mode)
+	def setBackgroundPosition(self,x,y):
+		self.backgroundX=x
+		self.backgroundY=y
+		self.trackBackgroundLocation=True
+	def drawBackground(self,x=0,y=0):
+		if self.trackBackgroundLocation:
+			if hasattr(self,"backgroundX"):
+				x=self.backgroundX
+				y=self.backgroundY
+			else:
+				self.backgroundX=x
+				self.backgroundY=y
+		self.drawCall=True
+		if not self.backgroundMode:
+			self.redraw()
+		else:
+			x+=self.width
+			y+=self.height
+			x=int(self.tileWidth*x)
+			y=int(self.tileWidth*y)
+			area=(x,y,self.screenWidth,self.screenHeight)
+			screen.blit(self.backgroundSurface,(0,0),area=area)
 	def getResizedBool(self):
 		out=self.resized
 		self.resized=False
@@ -622,7 +709,7 @@ class graphics:
 	def checkKey(self,key):
 		if key==self.fsKey:
 			print("TILEGRAPHICS WARNING, the key being checked is internally bound to fullscreen toggle\nIf you want to use this key, change the fullscreen key with the fullScreenKey=<key> when initializing graphics instance")
-		return pygame.key.get_pressed()[key]==1
+		return key in self.keyQue
 	def checkClick(self,button=0):
 		return pygame.mouse.get_pressed()[button]==1
 	def quit(self):
@@ -649,15 +736,52 @@ class graphics:
 				pix=sprite.pixdata[y][x]
 				if pix!=sprite.backColor:
 					screen.set_at((x+px+xpart,y+py+ypart),pix)
+	def msp(self,x,y,sprite):
+		import time
+		totaltime=0
+		mt=time.time()
+		if sprite.trackerNum!=self.spriteReloadNum:
+			sprite.reload(graphicsInstance=self)
+		self.drawCall=True
+		x*=self.tileWidth
+		y*=self.tileWidth
+		x=int(x)
+		y=int(y)
+		bufferObject=screen.get_buffer()
+		buffer=bytearray(bufferObject)
+#		ntArray=list(buffer.raw)
+		myData=sprite.pixdata[:self.screenHeight-y]
+		for yOff, line in enumerate(myData):
+			xOff=0
+			for item in line:
+				 if type(item)==int:
+					 xOff+=item
+				 else:
+					 startIndex=(yOff+y)*self.screenWidth*4+(xOff+x)*4
+					 t=time.time()
+					 buffer[startIndex:len(item)+startIndex]=bytes(item)
+					 totaltime+=time.time()-t
+#					 buffer.write(bytes(item),offset=startIndex)
+#					 ntArray[startIndex:startIndex+len(item)]=item
+					 xOff+=int(len(item)/4)
+		temp=time.time()
+		bufferObject.write(bytes(buffer))
+		print(time.time()-temp)
+#		buffer.write(bytes(ntArray))
+		print(totaltime,time.time()-mt)
+		del buffer
 	def putSprite(self,x,y,sprite):
 		if sprite.trackerNum!=self.spriteReloadNum:
 			sprite.reload(graphicsInstance=self)
 		self.drawCall=True
 		x*=self.tileWidth
 		y*=self.tileWidth
+		x=int(x)
+		y=int(y)
 		buffer=screen.get_buffer()
 #		ntArray=list(buffer.raw)
-		for yOff, line in enumerate(sprite.pixdata):
+		myData=sprite.pixdata[:self.screenHeight-y]
+		for yOff, line in enumerate(myData):
 			xOff=0
 			for item in line:
 				 if type(item)==int:
@@ -692,6 +816,23 @@ class graphics:
 			tpos[1]=int(y)
 			screen.blit(t,tpos)
 			y+=textSize
+	def runInputBox(self,textBox,addText=""):
+		self.keyQue=[]
+		output=""
+		ex=False
+		while not ex:
+			self.update()
+			for a in self.keyQue:
+				if a==keycodes["BACKSPACE"]:
+					output=output[:-1]
+				else:
+					if a!=keycodes["RETURN"] and a<0x110000:
+						output+=chr(a)
+					else:
+						ex=True
+			self.keyQue=[]
+			self.putTextArray(textBox,[addText+output])
+		return output
 	def putTextBox(self,textBox,text):
 		self.drawCall=True
 		pygame.draw.rect(screen,textBox.backgroundColor,(textBox.x*self.tileWidth,textBox.y*self.tileWidth,textBox.width*self.tileWidth,textBox.height*self.tileWidth))
@@ -721,19 +862,34 @@ class graphics:
 				self.putLegacySprite(nx+x,ny+y,parse[1])
 	def removeSprite(self,x,y):
 		self.drawCall=True
-		xpart=x-int(x)
-		ypart=y-int(y)
-		xrange=[0,1]
-		if xpart!=0:
-			xrange=[0,2]
-		yrange=[0,1]
-		if ypart!=0:
-			yrange=[0,2]
-		x=int(x)
-		y=int(y)
-		for tx in range(xrange[0],xrange[1]):
-			for ty in range(yrange[0],yrange[1]):
-				pygame.draw.rect(screen,self.palette.get(self.matrix[y+ty][x+tx]),((x+tx)*self.tileWidth,(y+ty)*self.tileWidth,self.tileWidth,self.tileWidth))
+		if not self.backgroundMode:
+			xpart=x-int(x)
+			ypart=y-int(y)
+			xrange=[0,1]
+			if xpart!=0:
+				xrange=[0,2]
+			yrange=[0,1]
+			if ypart!=0:
+				yrange=[0,2]
+			x=int(x)
+			y=int(y)
+			for tx in range(xrange[0],xrange[1]):
+				for ty in range(yrange[0],yrange[1]):
+					x1=x+tx
+					y1=y+ty
+					if x1<self.width and x1>=0 and y1<self.height and y1>=0:
+						pygame.draw.rect(screen,self.palette.get(self.matrix[y1][x1]),((x1)*self.tileWidth,(y1)*self.tileWidth,self.tileWidth,self.tileWidth))
+		else:
+			sx=int(x*self.tileWidth)
+			sy=int(y*self.tileWidth)
+			x+=self.width
+			y+=self.height
+			if self.trackBackgroundLocation and hasattr(self,"backgroundX"):
+				x+=self.backgroundX
+				y+=self.backgroundY
+			x=int(x*self.tileWidth)
+			y=int(y*self.tileWidth)
+			screen.blit(self.backgroundSurface,(sx,sy),area=(x,y,self.tileWidth,self.tileWidth))
 	def removeLegacyComplexSprite(self,x,y,complexSprite):
 		self.drawCall=True
 		for parse in enumerate(complexSprite.sprites):
@@ -747,6 +903,18 @@ class graphics:
 	def removeSizeSprite(self,x,y,sizeSprite):
 		import math
 		self.drawCall=True
-		for yo in range(math.ceil(sizeSprite.height)):
-			for xo in range(math.ceil(sizeSprite.width)):
-				self.put(int(x+xo),int(y+yo),self.get(x+xo,y+yo))
+		if not self.backgroundMode:
+			for yo in range(math.ceil(sizeSprite.height)):
+				for xo in range(math.ceil(sizeSprite.width)):
+					self.put(int(x+xo),int(y+yo),self.get(x+xo,y+yo))
+		else:
+			sx=int(x*self.tileWidth)
+			sy=int(y*self.tileWidth)
+			x+=self.width
+			y+=self.height
+			if self.trackBackgroundLocation and hasattr(self,"backgroundX"):
+				x+=self.backgroundX
+				y+=self.backgroundY
+			x=int(x*self.tileWidth)
+			y=int(y*self.tileWidth)
+			screen.blit(self.backgroundSurface,(sx,sy),area=(x,y,math.ceil(self.tileWidth*sizeSprite.width),math.ceil(self.tileWidth*sizeSprite.height)))
